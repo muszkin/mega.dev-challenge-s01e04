@@ -1,8 +1,9 @@
 ---
 plan: morning-digest
-status: ready
+status: done
 owner: rook
 opened: 2026-10-29
+closed: 2026-10-30
 ---
 
 # Morning digest
@@ -77,3 +78,21 @@ page again with `LANE_MARKER` unset (the banner reads "no marker set") and uploa
 link. Move this plan to `docs/plans/done/` with its issue list.
 
 Done when: the preview link no longer shows the lane marker.
+
+## Issues
+
+| # | Issue | Blocked by | Worker | Closed |
+|---|-------|-----------|--------|--------|
+| 1 | Digest types: DigestRow and readNight signature | — | omp · claude-opus-5-5 · low | 2026-10-30 |
+| 2 | Run log reader: readNight | #1 | omp · claude-opus-5-5 · medium | 2026-10-30 |
+| 3 | Digest page: GET /digest/:night | #1, #2 | omp · claude-opus-5-5 · high | 2026-10-30 |
+| 4 | Digest JSON: GET /api/digest/:night | #1, #2 | omp · claude-opus-5-5 · high | 2026-10-30 |
+| 5 | Board link: each night links to its digest | #1, #2 | omp · claude-opus-5-5 · high | 2026-10-30 |
+| 6 | Route tests for the digest page and JSON | #1, #3, #4 | omp · claude-opus-5-5 · high | 2026-10-30 |
+| 7 | Preview for review | #3 | omp · claude-opus-5-5 · low | 2026-10-30 |
+| 8 | Clean up: marker off the preview, plan to done | #7 + review | omp · claude-opus-5-5 · low | 2026-10-30 |
+
+§ 1 was split in two (#1 types, #2 reader) so § 2 could start on the types alone. #3–#6 ran as
+parallel workers in their own worktrees; this lane had one model, so the cheaper-model split for
+views and tests did not happen. #7 was closed before the reviewer looked and reopened until the
+review was in.
